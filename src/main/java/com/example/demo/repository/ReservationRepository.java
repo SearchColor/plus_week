@@ -19,6 +19,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     List<Reservation> findByItemId(Long itemId);
 
+    @Override
+    @Query("select b from Reservation b join fetch b.item")
+    List<Reservation> findAll();
+
     @Query("SELECT r FROM Reservation r " +
             "WHERE r.item.id = :id " +
             "AND NOT (r.endAt <= :startAt OR r.startAt >= :endAt) " +
