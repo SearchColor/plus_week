@@ -4,13 +4,11 @@ import com.example.demo.constants.GlobalConstants;
 import com.example.demo.dto.Authentication;
 import com.example.demo.dto.LoginRequestDto;
 import com.example.demo.dto.UserRequestDto;
+import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -39,5 +37,10 @@ public class UserController {
         if (session != null) {
             session.invalidate();
         }
+    }
+
+    @GetMapping("/{email}")
+    public User getUser(@PathVariable String email) {
+        return userService.getUserByEmail(email);
     }
 }
