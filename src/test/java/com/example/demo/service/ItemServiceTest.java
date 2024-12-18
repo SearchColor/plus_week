@@ -32,6 +32,7 @@ class ItemServiceTest {
       itemRepository.save(item);
 
       System.out.println("item status : "+ item.getStatus());
+      System.out.println("item name : "+ item.getName());
 
     }
 
